@@ -752,8 +752,16 @@ def fwd(plots, output, detector):
                                       flimiter = fwd.range_limiter(0, Fmax / 2))
                 out.savefig()
                 plt.clf()
-                
-        
+
+
+@cli.command("calculate-metrics")
+@click.option("-o", "--output", default="metrics.json", help="output for metrics")
+@click.argument("infile")
+def calculate_metrics(infile, output):
+    print(f'calculate_metrics(infile={infile}, output={output})')
+
+
+
 # next
 # - [x] factor gauss smear to function and out of plot_signal_demo
 # - [x] factor out demo and plotting from plot_signal_demo
