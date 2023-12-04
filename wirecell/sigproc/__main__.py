@@ -756,10 +756,27 @@ def fwd(plots, output, detector):
 
 @cli.command("calculate-metrics")
 @click.option("-o", "--output", default="metrics.json", help="output for metrics")
+@click.option("-p", "--params", default="params.json", help="inoput for parameters")
 @click.argument("infile")
-def calculate_metrics(infile, output):
+def calculate_metrics(infile, output, params):
     print(f'calculate_metrics(infile={infile}, output={output})')
-
+    import json
+    with open(params, 'r') as pfile:
+        p = json.load(pfile)
+    print(f'p = {p}')
+    metrics = {
+        "num": 0,
+        "theta": 0,
+        "phi": 0,
+        "nchan": 0,
+        "sigtot": 0,
+        "eff": [],
+        "bias": [],
+        "res": []
+    }
+    with open(output, 'w') as outfile:
+        json.dump(metrics, outfile)
+    # open(output, "wt").write(json.dump(metrics))
 
 
 # next
