@@ -23,8 +23,6 @@ jobs:
 
             - name: Install wire-cell-python & run the tests
               run: |
-                  python -m venv venv/
-                  source venv/bin/activate
                   python -m pip install pip==22.0.4
                   python -m pip install -e .
                   python -c "import wirecell"
