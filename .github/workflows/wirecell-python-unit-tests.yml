@@ -1,7 +1,7 @@
 on: [push]
 jobs:
     Unit-Tests:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
 
         container:
           image: python:3.9.13
@@ -10,8 +10,8 @@ jobs:
             - name: Print job info
               run: echo "This job was automatically triggered by a ${{ github.event_name }} event. It is now running on a ${{ runner.os }} server hosted by GitHub! The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
-            - name: Print Architecture & Python Version
-              run: uname -m && python -V
+            - name: Print Architecture & Python Version & PATH
+              run: uname -m && python -V && echo $PATH && which node
 
             - name: Setup BATS
               uses: mig4/setup-bats@v1
@@ -20,14 +20,6 @@ jobs:
 
             - name: Check out the commit that triggered this job
               uses: actions/checkout@v4
-
-            - name: Print script content
-              run: |
-                  cat /var/run/act/workflow/0.sh
-                  cat /var/run/act/workflow/1.sh
-                  cat /var/run/act/workflow/2.sh
-                  cat /var/run/act/workflow/3.sh
-                  cat /var/run/act/workflow/4.sh
 
             - name: Install wire-cell-python & run the tests
               run: |
