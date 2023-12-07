@@ -21,6 +21,14 @@ jobs:
             - name: Check out the commit that triggered this job
               uses: actions/checkout@v4
 
+            - name: Print script content
+              run: |
+                  cat /var/run/act/workflow/0.sh
+                  cat /var/run/act/workflow/1.sh
+                  cat /var/run/act/workflow/2.sh
+                  cat /var/run/act/workflow/3.sh
+                  cat /var/run/act/workflow/4.sh
+
             - name: Install wire-cell-python & run the tests
               run: |
                   pip install pip==22.0.4
