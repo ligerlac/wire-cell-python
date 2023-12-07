@@ -4,14 +4,14 @@ jobs:
         runs-on: ubuntu-latest
 
         container:
-          image: python:3.9
+          image: python:3.9.13
 
         steps:
             - name: Print job info
               run: echo "This job was automatically triggered by a ${{ github.event_name }} event. It is now running on a ${{ runner.os }} server hosted by GitHub! The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
-            - name: Print Architecture
-              run: uname -m
+            - name: Print Architecture & Python Version
+              run: uname -m && python -V
 
             - name: Setup BATS
               uses: mig4/setup-bats@v1
