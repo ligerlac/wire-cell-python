@@ -37,4 +37,7 @@ jobs:
                   python -m pip install -e .
                   ./test/gen-test-empty-commands.sh
                   bats test/test-empty-commands.bats
-                  pytest wirecell/
+
+            - name: Run the submodules' tests
+              run: |
+                  pytest -s wirecell/
