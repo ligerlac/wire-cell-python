@@ -25,7 +25,7 @@ jobs:
             - name: Check out wire-cell-data
               uses: actions/checkout@v4
               with:
-                repository: WireCell/wire-cell-data.git
+                repository: WireCell/wire-cell-data
                 path: wire-cell-data
 
             - name: Install wire-cell-python & run the tests
