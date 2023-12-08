@@ -21,6 +21,7 @@ jobs:
 
             - name: Check out the commit that triggered this job
               uses: actions/checkout@v4
+                path: ${{ github.repository }}
 
             - name: Check out wire-cell-data
               uses: actions/checkout@v4
@@ -31,11 +32,13 @@ jobs:
             - name: Install wire-cell-python & run the tests
               run: |
                   export WIRECELL_PATH=$GITHUB_WORKSPACE/wire-cell-data/
-                  python -m pip install pip==22.0.4
-                  python -m pip install -e .
+                  pip install pip==22.0.4
+                  pip install ${{ github.repository }}
+                  cd ${{ github.repository }}
                   ./test/gen-test-empty-commands.sh
                   bats test/test-empty-commands.bats
 
             - name: Run the submodules' tests
               run: |
+                  cd ${{ github.repository }}
                   pytest -s wirecell/
